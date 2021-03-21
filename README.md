@@ -8,5 +8,8 @@ Once it is ready, there will be a link.
 
 Technologies and resources used so far include but are not limited to:
 * React
-* React-Leaflet
-* [Country Polygons as GeoJSON](https://datahub.io/core/geo-countries#resource-countries)
+* [React-Leaflet](https://react-leaflet.js.org/) (map)
+* [Country Polygons as GeoJSON](https://datahub.io/core/geo-countries#resource-countries) (used to add the top layer to 
+  the 
+  map that is used for mouse events)
+* [desease.sh](https://corona.lmao.ninja/) (statistics)
