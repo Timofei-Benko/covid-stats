@@ -13,7 +13,7 @@ export default function Map(props) {
     const [countriesData, setCountriesData] = useState([])
 
     useEffect(() => {
-        async function getGeoJSON() {
+        async function getCountriesData() {
             try {
                 const response = await fetch('https://corona.lmao.ninja/v2/countries');
                 const data = await response.json()
@@ -22,7 +22,7 @@ export default function Map(props) {
                 console.error(`Failed to fetch countries: ${e.message}`, e);
             }
         }
-        getGeoJSON().then(json => setCountriesData(json))
+        getCountriesData().then(json => setCountriesData(json))
     }, [])
 
     const handleCountryClick = (ISO_A3) => {
