@@ -1,22 +1,35 @@
 import React from 'react';
-import { useState } from 'react'
-import './App.css';
-
+import { Route } from 'react-router-dom';
 import Map from './components/Map';
-import Sidebar from "./components/Sidebar";
+import CountryFullStats from "./components/CountryFullStats";
+import CountryStatsComparison from "./components/CountryStatsComparison";
 
 function App() {
-
-    const [ countryData, setCountryData ] = useState(null)
-
     return (
-        <div className="App">
-            <Map
-                setCountryData={setCountryData}
-            />
-            <Sidebar
-                data={countryData}
-            />
+        <div className="App"
+             style={{fontFamily: 'Poppins'}}
+        >
+
+            <Route
+                path='/'
+                exact
+                component={Map}
+            >
+            </Route>
+
+            <Route
+                path='/country-full-stats'
+                exact
+                component={CountryFullStats}
+            >
+            </Route>
+
+            <Route
+                path='/country-comparison'
+                exact
+                component={CountryStatsComparison}
+            >
+            </Route>
         </div>
     );
 }
