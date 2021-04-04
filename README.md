@@ -1,15 +1,26 @@
 # Covid-Stats
 
+## 1. Description
+
 A react app that uses the map to showcase the current state of COVID-19 pandemic.
 
 As of now, __the project is under construction.__
 
 Once it is ready, there will be a link.
 
+## 2. Technologies
+
 Technologies and resources used so far include but are not limited to:
-* React
+* React/Redux
 * [React-Leaflet](https://react-leaflet.js.org/) (map)
+* [nivo](https://nivo.rocks/) (graphs)
 * [Country Polygons as GeoJSON](https://datahub.io/core/geo-countries#resource-countries) (used to add the top layer to 
   the 
   map that is used for mouse events)
 * [desease.sh](https://corona.lmao.ninja/) (statistics)
+
+## 3. How to use
+
+1. Click a country to see it's Covid statistics
+1. For more info, click SEE MORE
+1. To compare the countries, click ADD TO SELECTION (as of now, you can add up to 4 countries)
