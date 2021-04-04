@@ -1,40 +1,37 @@
-import {useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useDispatch, useSelector, connect } from 'react-redux';
 import {GeoJSON, MapContainer, TileLayer} from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
-import './Map.css'
-import countries from './../data/countries.json'
+import { css, jsx} from '@emotion/react'
+import countries from './../data/countries.json';
+import CountryInfoModal from "./CountryInfoModal";
+import CountrySelectionModal from "./CountrySelectionModal";
 
-export default function Map(props) {
 
-    const {
-        setCountryData,
-    } = props
+/** @jsxRuntime classic */
+/** @jsx jsx */
 
-    const [countriesData, setCountriesData] = useState([])
+function Map() {
 
-    useEffect(() => {
-        async function getCountriesData() {
-            try {
-                const response = await fetch('https://corona.lmao.ninja/v2/countries');
-                const data = await response.json()
-                console.log(data)
-            } catch (e) {
-                console.error(`Failed to fetch countries: ${e.message}`, e);
-            }
-        }
-        getCountriesData().then(json => setCountriesData(json))
-    }, [])
+    const countryDataStore = useSelector(store => store.global.data);
+
+    const dispatch = useDispatch();
+
+    let data = useRef();
+    data.current = countryDataStore;
 
     const handleCountryClick = (ISO_A3) => {
-        console.log(ISO_A3)
+        const countryStats = data.current.find((country) => country.countryInfo.iso3 === ISO_A3)
 
-        if (countriesData.length !== 0) {
-            const countryInfo = countriesData.find((country) => countryInfo.iso3 === ISO_A3)
-            console.log(countryInfo)
-        } else {
-            console.error('data has not been set')
+        if (!countryStats) {
+            return
         }
-    }
+
+        dispatch({
+            type: 'SET_COUNTRY_DATA',
+            payload: countryStats,
+        })
+    };
 
     const countryEventsHandler = (country, layer) => {
         layer.on({
@@ -52,11 +49,17 @@ export default function Map(props) {
             },
             click: (ev) => {
                 handleCountryClick(ev.target.feature.properties.ISO_A3)
-            }
+            },
         })
-    }
+    };
 
-    const countryStyle = {
+    const mapStyles = css`
+      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+    `;
+
+    const countryStyles = {
         fillColor: 'gray',
         fillOpacity: 0,
         color: 'black',
@@ -66,22 +69,34 @@ export default function Map(props) {
     const mapInitState = {
         location: [53.7098, 27.9534],
         zoom: 4,
+        minZoom: 2,
     };
 
     return (
-        <MapContainer center={mapInitState.location}
-                      zoom={mapInitState.zoom}
-        >
-            <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
-                       attribution='&copy; <a href="https://carto.com/">carto.com</a> contributors'
-            />
+        <>
+            <MapContainer center={mapInitState.location}
+                          zoom={mapInitState.zoom}
+                          minZoom={mapInitState.minZoom}
+                          css={mapStyles}
 
-            <GeoJSON
-                data={countries.features}
-                style={countryStyle}
-                onEachFeature={countryEventsHandler}
-            />
+            >
+                <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
+                           attribution='&copy; <a href="https://carto.com/">carto.com</a> contributors'
+                           noWrap={true}
+                />
 
-        </MapContainer>
+                <GeoJSON
+                    data={countries.features}
+                    style={countryStyles}
+                    onEachFeature={countryEventsHandler}
+                />
+
+            </MapContainer>
+
+            <CountryInfoModal/>
+            <CountrySelectionModal/>
+        </>
     )
-};
+}
+
+export default Map;
