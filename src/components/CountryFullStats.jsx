@@ -183,8 +183,9 @@ export default function CountryFullStats() {
                   display: flex;
                   justify-content: center;
                   align-items: center;
-                  height: 100vh;
+                  height: 100%;
                   background: gray;
+                  overflow: scroll;
                 `}
             >
                 <div
@@ -194,6 +195,7 @@ export default function CountryFullStats() {
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
+                        margin: 1rem 0;
                         padding: 3rem 3rem 2rem 3rem;
                         border-radius: 10px;
                         background: #FFFFFF;

@@ -92,12 +92,13 @@ export default function CountryStatsComparison() {
               flex-direction: column;
               justify-content: center;
               align-items: center;
-              height: 100vh;
+              height: 100%;
               background-color: gray;
             `}
         >
             <div
                 css={css`
+                    margin: 1rem 0;
                     padding: 3rem;
                     border-radius: 10px;
                     background-color: #FFFFFF;
