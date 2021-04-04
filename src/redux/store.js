@@ -1,16 +1,16 @@
-import { applyMiddleware, createStore, compose} from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import covidStatsByCountryReducer from './reducers/covidStatsByCountry';
+import rootReducer from "./reducers/rootReducer";
 import loadCountryData from "./apiService";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-    covidStatsByCountryReducer,
+    rootReducer,
     composeEnhancer(applyMiddleware(thunk)),
 );
 
-store.dispatch(loadCountryData())
+store.dispatch(loadCountryData());
 
 export default store;
