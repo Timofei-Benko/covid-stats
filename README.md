@@ -4,8 +4,6 @@
 
 A React app that uses the map to showcase the current state of COVID-19 pandemic.
 
-Watch it live [here](https://timofei-benko.github.io/covid-stats/).
-
 ## 2. Technologies
 
 Technologies and resources used so far include but are not limited to:
