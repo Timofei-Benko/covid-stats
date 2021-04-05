@@ -112,6 +112,16 @@ export default function CountryFullStats() {
         />
     )
 
+    const getTestCoverageMetric = () => {
+        const testCoverageMetric = +countryData.tests / +countryData.population * 100;
+
+        if (testCoverageMetric < 1) {
+            return testCoverageMetric.toFixed(2) + '%'
+        }
+
+        return parseInt(testCoverageMetric) + '%'
+    }
+
     const testCoverageCenteredMetric = ({ centerX, centerY }) => {
 
         return (
@@ -125,7 +135,9 @@ export default function CountryFullStats() {
                     fontWeight: '600',
                 }}
             >
-                {parseInt(+countryData.tests / +countryData.population * 100) + '%'}
+                {
+                    getTestCoverageMetric()
+                }
             </text>
         )
     }

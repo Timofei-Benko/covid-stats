@@ -3,11 +3,20 @@ import { Route } from 'react-router-dom';
 import Map from './components/Map';
 import CountryFullStats from "./components/CountryFullStats";
 import CountryStatsComparison from "./components/CountryStatsComparison";
+import { css, jsx} from '@emotion/react';
+
+/** @jsxRuntime classic */
+/** @jsx jsx */
 
 function App() {
     return (
         <div className="App"
-             style={{fontFamily: 'Poppins'}}
+             css={css`
+                font-family: Poppins, sans-serif;
+                html {
+                    background: gray;
+                }
+             `}
         >
 
             <Route
