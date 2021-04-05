@@ -92,12 +92,22 @@ export default function CountrySelectionModal() {
                                 ))
                             }
                         </div>
-                        <Button
-                            variant={"contained"}
-                            component={NavLink}
-                            to={'/country-comparison'}
-                        >Compare
-                        </Button>
+                        {
+                            countrySelectionData.length <= 1
+                            ?
+                                <Button
+                                    variant={"contained"}
+                                    disabled
+                                >Compare
+                                </Button>
+                            :
+                                <Button
+                                    variant={"contained"}
+                                    component={NavLink}
+                                    to={'/country-comparison'}
+                                >Compare
+                                </Button>
+                        }
                     </>
                 :
                 null
@@ -105,4 +115,4 @@ export default function CountrySelectionModal() {
 
         </div>
     )
-};
+}
