@@ -7,12 +7,12 @@ A React app that uses the map to showcase the current state of COVID-19 pandemic
 ## 2. Technologies
 
 Technologies and resources used so far include but are not limited to:
+
 * React/Redux
 * [React-Leaflet](https://react-leaflet.js.org/) (map)
 * [nivo](https://nivo.rocks/) (graphs)
-* [Country Polygons as GeoJSON](https://datahub.io/core/geo-countries#resource-countries) (used to add the top layer to 
-  the 
-  map that is used for mouse events)
+* [Country Polygons as GeoJSON](https://datahub.io/core/geo-countries#resource-countries) (used to add the top layer to
+  the map that is used for mouse events)
 * [disease.sh](https://corona.lmao.ninja/) (statistics API)
 
 ## 3. How to use

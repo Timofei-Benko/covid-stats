@@ -1,39 +1,43 @@
-import {LOAD_COUNTRY_DATA_ERROR, LOAD_COUNTRY_DATA_LOADING, LOAD_COUNTRY_DATA_SUCCESS} from "../actions";
+import {
+  LOAD_COUNTRY_DATA_ERROR,
+  LOAD_COUNTRY_DATA_LOADING,
+  LOAD_COUNTRY_DATA_SUCCESS,
+} from '../actions';
 
 const initState = {
-    data: [],
-    loading: false,
-    error: '',
+  data: [],
+  loading: false,
+  error: '',
 };
 
 const covidStatsByCountryReducer = (state = initState, action) => {
-    const { type, payload } = action;
+  const { type, payload } = action;
 
-    switch (type) {
-        case LOAD_COUNTRY_DATA_LOADING: {
-            return {
-                ...state,
-                loading: true,
-                error:''
-            };
-        }
-        case LOAD_COUNTRY_DATA_SUCCESS: {
-            return {
-                ...state,
-                data: [...payload],
-                loading: false
-            }
-        }
-        case LOAD_COUNTRY_DATA_ERROR: {
-            return {
-                ...state,
-                loading: false,
-                error: payload,
-            };
-        }
-        default:
-            return state
+  switch (type) {
+    case LOAD_COUNTRY_DATA_LOADING: {
+      return {
+        ...state,
+        loading: true,
+        error: '',
+      };
     }
-}
+    case LOAD_COUNTRY_DATA_SUCCESS: {
+      return {
+        ...state,
+        data: [...payload],
+        loading: false,
+      };
+    }
+    case LOAD_COUNTRY_DATA_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: payload,
+      };
+    }
+    default:
+      return state;
+  }
+};
 
 export default covidStatsByCountryReducer;
