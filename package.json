@@ -1,13 +1,13 @@
 {
   "name": "covid-stats",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.1.5",
     "@material-ui/core": "^4.11.3",
     "@nivo/bar": "^0.74.0",
-    "@nivo/core": "^0.67.0",
-    "@nivo/pie": "^0.67.0",
+    "@nivo/core": "^0.74.0",
+    "@nivo/pie": "^0.74.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
@@ -18,10 +18,11 @@
     "react-dom": "^17.0.1",
     "react-leaflet": "^3.1.0",
     "react-leaflet-div-icon": "^1.1.0",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.3.3",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.1"
   },
@@ -39,6 +40,10 @@
       "react-app/jest"
     ]
   },
+  "eslintIgnore": [
+    "node_modules",
+    "build/*"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -52,8 +57,18 @@
     ]
   },
   "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.10",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-leaflet": "^2.8.2",
+    "@types/react-redux": "^7.1.20",
+    "@types/styled-components": "^5.1.15",
     "gh-pages": "^3.1.0",
     "prettier": "^2.5.0",
-    "react-redux": "^7.2.2"
+    "react-redux": "^7.2.2",
+    "source-map-loader": "^3.0.0",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2"
   }
 }

@@ -1,16 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { ResponsivePie } from '@nivo/pie';
-import { Button } from '@material-ui/core';
 import { css } from '@emotion/react';
+import { TRootState } from '../../redux/store';
+import { TotalCasesCenteredMetric } from './chart-components';
 
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
-export default function CountryFullStats() {
-  // use let and set country data to some country then reassign it with data from store
-  const countryData = useSelector((store) => store.singleCountry);
+export const CountryFullStats = ({ isVisible }: { isVisible: boolean }) => {
+  const countryData = useSelector((store: TRootState) => store.singleCountry);
 
   const updateDate = new Date(+countryData.updated).toLocaleString();
 
@@ -60,23 +56,6 @@ export default function CountryFullStats() {
     },
   ];
 
-  const totalCasesCenteredMetric = ({ centerX, centerY }) => {
-    return (
-      <text
-        x={centerX}
-        y={centerY}
-        textAnchor="middle"
-        dominantBaseline="central"
-        style={{
-          fontSize: '2rem',
-          fontWeight: '600',
-        }}
-      >
-        {countryData.cases}
-      </text>
-    );
-  };
-
   const affectedPopulationPie = (data) => (
     <ResponsivePie
       data={data}
@@ -91,11 +70,14 @@ export default function CountryFullStats() {
       sliceLabelsSkipAngle={10}
       sliceLabelsTextColor="rgba(0, 0, 0, 0)"
       layers={[
+        // @ts-expect-error
         'slices',
+        // @ts-expect-error
         'sliceLabels',
+        // @ts-expect-error
         'radialLabels',
         'legends',
-        totalCasesCenteredMetric,
+        TotalCasesCenteredMetric,
       ]}
       legends={[
         {
@@ -125,7 +107,7 @@ export default function CountryFullStats() {
       return testCoverageMetric.toFixed(2) + '%';
     }
 
-    return parseInt(testCoverageMetric) + '%';
+    return Math.round(testCoverageMetric) + '%';
   };
 
   const testCoverageCenteredMetric = ({ centerX, centerY }) => {
@@ -137,7 +119,7 @@ export default function CountryFullStats() {
         dominantBaseline="central"
         style={{
           fontSize: '2rem',
-          fontWeight: '600',
+          fontWeight: 600,
         }}
       >
         {getTestCoverageMetric()}
@@ -159,8 +141,11 @@ export default function CountryFullStats() {
       sliceLabelsSkipAngle={10}
       sliceLabelsTextColor="rgba(0, 0, 0, 0)"
       layers={[
+        // @ts-expect-error
         'slices',
+        // @ts-expect-error
         'sliceLabels',
+        // @ts-expect-error
         'radialLabels',
         'legends',
         testCoverageCenteredMetric,
@@ -196,11 +181,13 @@ export default function CountryFullStats() {
     }
   `;
 
+  // TODO: make it a modal 
   return (
     countryData && (
       <div
         css={css`
-          display: flex;
+          position: absolute;
+          display: ${isVisible ? 'block' : 'none'};
           justify-content: center;
           align-items: center;
           height: 100vh;
@@ -255,17 +242,6 @@ export default function CountryFullStats() {
                 <h1>{countryData.country} COVID-19 Statistics</h1>
                 <p>updated on {updateDate}</p>
               </div>
-              <Button
-                variant={'contained'}
-                component={NavLink}
-                to="/"
-                css={css`
-                  text-align: center;
-                `}
-              >
-                {' '}
-                Back to map
-              </Button>
             </div>
           </div>
           <div

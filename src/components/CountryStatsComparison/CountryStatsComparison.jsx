@@ -5,9 +5,6 @@ import { Button } from '@material-ui/core';
 import { ResponsiveBar } from '@nivo/bar';
 import { css } from '@emotion/react';
 
-/** @jsxRuntime classic */
-/** @jsx jsx */
-
 export default function CountryStatsComparison() {
   const countryData = useSelector((store) => store.comparison);
 
@@ -114,13 +111,9 @@ export default function CountryStatsComparison() {
           >
             {countryData.map((country, index) =>
               index === countryData.length - 1 ? (
-                <span key={`${new Date().getDate()}-${index}`}>
-                  {`${country.country} `}
-                </span>
+                <span key={`country-${index}`}>{`${country.country} `}</span>
               ) : (
-                <span key={`${new Date().getDate()}-${index}`}>
-                  {`${country.country}, `}
-                </span>
+                <span key={`country-${index}`}>{`${country.country}, `}</span>
               )
             )}
             Comparative Statistics

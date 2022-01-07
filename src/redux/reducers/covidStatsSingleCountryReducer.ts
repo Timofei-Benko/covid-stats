@@ -1,6 +1,11 @@
+import { TCountry } from './covidStatsCountryComparisonReducer';
+
 const initState = null;
 
-const covidStatsByCountryReducer = (state = initState, action) => {
+const covidStatsByCountryReducer = (
+  state: null | TCountry = initState,
+  action
+) => {
   const { type, payload } = action;
 
   switch (type) {

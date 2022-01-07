@@ -4,7 +4,13 @@ import {
   LOAD_COUNTRY_DATA_SUCCESS,
 } from '../actions';
 
-const initState = {
+type TCovidStatsByCountryReducer = {
+  data: any[] | undefined;
+  loading: boolean;
+  error: string;
+};
+
+const initState: TCovidStatsByCountryReducer = {
   data: [],
   loading: false,
   error: '',
